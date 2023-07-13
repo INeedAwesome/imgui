@@ -2,7 +2,7 @@ project "ImGui"
 	kind "StaticLib"
 	language "C++"
     cppdialect "C++20"
-    staticruntime "off"
+    staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "-%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "-%{prj.name}")
@@ -19,8 +19,18 @@ project "ImGui"
 		"imstb_rectpack.h",
 		"imstb_textedit.h",
 		"imstb_truetype.h",
-		"imgui_demo.cpp"
+		"imgui_demo.cpp",
+        "backends/imgui_impl_opengl3.h",
+        "backends/imgui_impl_opengl3.cpp",
+        "backends/imgui_impl_glfw.cpp",
+        "backends/imgui_impl_glfw.h"
 	}
+
+    includedirs
+    {
+        "../imgui",
+        "../glfw/include"
+    }
 
 	filter "system:windows"
 		systemversion "latest"
