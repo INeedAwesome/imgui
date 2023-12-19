@@ -1,11 +1,11 @@
 project "ImGui"
 	kind "StaticLib"
 	language "C++"
-    cppdialect "C++20"
-    staticruntime "on"
+	cppdialect "C++17"
+    staticruntime "On"
 
-	targetdir ("bin/" .. outputdir .. "-%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "-%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
@@ -19,18 +19,8 @@ project "ImGui"
 		"imstb_rectpack.h",
 		"imstb_textedit.h",
 		"imstb_truetype.h",
-		"imgui_demo.cpp",
-        "backends/imgui_impl_opengl3.h",
-        "backends/imgui_impl_opengl3.cpp",
-        "backends/imgui_impl_glfw.cpp",
-        "backends/imgui_impl_glfw.h"
+		"imgui_demo.cpp"
 	}
-
-    includedirs
-    {
-        "../imgui",
-        "../glfw/include"
-    }
 
 	filter "system:windows"
 		systemversion "latest"
@@ -38,17 +28,16 @@ project "ImGui"
 	filter "system:linux"
 		pic "On"
 		systemversion "latest"
-		cppdialect "C++17"
 
 	filter "configurations:Debug"
 		runtime "Debug"
-		symbols "on"
+		symbols "On"
 
 	filter "configurations:Release"
 		runtime "Release"
-		optimize "on"
-
-    filter "configurations:Dist"
+		optimize "On"
+	
+	filter "configurations:Dist"
 		runtime "Release"
-		optimize "Speed"
-        symbols "off"
+		optimize "On"
+		symbols "Off"
